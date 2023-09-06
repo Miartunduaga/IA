@@ -5,7 +5,7 @@ class Perceptron:
     def __init__(self, n):
         self.pesos = np.random.rand(n)
         self.n = n
-    #SOPLA GAITAS
+
     def propagacion(self, entradas):
 
         self.salida = 1*(self.pesos.dot(entradas)>0)
