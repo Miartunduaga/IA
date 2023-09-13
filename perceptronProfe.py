@@ -19,21 +19,17 @@ class PerceptronProfe:
         
         respuesta = self.peso1 * entradaPeso1 + self.peso2 * entradaPeso2 + self.peso3 * entradaPeso3 + self.bias
         
-        print(f"FUNCION DE PROPAGACION ENTRADAS  =  {entradaPeso1},      {entradaPeso2},     {entradaPeso3} ")
+        print(respuesta)
         
-       # respuesta[respuesta >= 0] = 1#respuesta es un arreglo
-       # respuesta[respuesta < 0] = 0
+        respuesta[respuesta >= 0] = 1
+        respuesta[respuesta < 0] = 0
         
-        if respuesta>=0:
-            respuesta=1
-        elif respuesta<0:
-            respuesta=0  
         return respuesta
     
     def entrenador(self, entradaPesoR,entradaPesoG,entradaPesoB,respuestaDeseada):
         
         global bias,respuestaActual
-        numeroDeEpocas =100
+        numeroDeEpocas =2
         errores =0
         for epoca in range(numeroDeEpocas):
             
@@ -42,15 +38,18 @@ class PerceptronProfe:
                
                 error = respuestaDeseada[i]- respuestaActual
                 #Actualizacion de bias
-                self.bias += self.tasaAprendizaje*error
+                self.bias -= self.tasaAprendizaje*error
                 
                 #Actualizacion de pesos r g b
-                self.peso1 =(self.tasaAprendizaje * error * entradaPesoR[i])#R
-                self.peso2 =(self.tasaAprendizaje * error * entradaPesoG[i])#G
-                self.peso3 =(self.tasaAprendizaje * error * entradaPesoB[i])#B
+                self.peso1 = self.peso1 + (self.tasaAprendizaje * error * entradaPesoR[i])#R
+                self.peso2 = self.peso2 + (self.tasaAprendizaje * error * entradaPesoG[i])#G
+                self.peso3 = self.peso3 + (self.tasaAprendizaje * error * entradaPesoB[i])#B
                 
                 
                 if not np.array_equal(respuestaActual,respuestaDeseada):
                     errores+=1
-                #print(errores," FALLOS " ,"   bias  " ,self.bias)
+                print(errores," FALLOS " ,"   bias  " ,self.bias)
             
+    
+    
+  
