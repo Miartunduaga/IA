@@ -193,7 +193,7 @@ exactitud /= total_ejemplos
 
 print("Exactitud en el conjunto de prueba:", exactitud)
 
-
+'''
 
 #PERCEPTRON COLORES RGB 
 perceptron_Limon =perceptron(3)
