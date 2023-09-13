@@ -14,7 +14,7 @@ ventanaMostrar =None
 rojo=None
 verde=None
 azul=None
-
+#Hola como estas 
 
     
         
@@ -93,7 +93,7 @@ etiquetaVideo.pack()#el pack hace que automaticamente la etiqueta se posicione p
 actualizarVideo()
 etiquetaVideo.bind("<Button-1>",capturarArea)
 
-
+#CASA MAESTRO
 
 #PERCEPTRON PROFESOR 
 
