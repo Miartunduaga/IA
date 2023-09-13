@@ -29,7 +29,7 @@ class PerceptronProfe:
     def entrenador(self, entradaPesoR,entradaPesoG,entradaPesoB,respuestaDeseada):
         
         global bias,respuestaActual
-        numeroDeEpocas =10
+        numeroDeEpocas =2
         errores =0
         for epoca in range(numeroDeEpocas):
             
@@ -38,12 +38,12 @@ class PerceptronProfe:
                
                 error = respuestaDeseada[i]- respuestaActual
                 #Actualizacion de bias
-                self.bias += self.tasaAprendizaje*error
+                self.bias -= self.tasaAprendizaje*error
                 
                 #Actualizacion de pesos r g b
-                self.peso1 =(self.tasaAprendizaje * error * entradaPesoR[i])#R
-                self.peso2 =(self.tasaAprendizaje * error * entradaPesoG[i])#G
-                self.peso3 =(self.tasaAprendizaje * error * entradaPesoB[i])#B
+                self.peso1 = self.peso1 + (self.tasaAprendizaje * error * entradaPesoR[i])#R
+                self.peso2 = self.peso2 + (self.tasaAprendizaje * error * entradaPesoG[i])#G
+                self.peso3 = self.peso3 + (self.tasaAprendizaje * error * entradaPesoB[i])#B
                 
                 
                 if not np.array_equal(respuestaActual,respuestaDeseada):

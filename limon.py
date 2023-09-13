@@ -3,7 +3,6 @@ from PIL import Image, ImageTk
 import practica as p
 import json
 import os
-from perceptron import perceptron
 import numpy as np
 import matplotlib.pyplot as plt
 from perceptronProfe import PerceptronProfe
