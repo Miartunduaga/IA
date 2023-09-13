@@ -5,7 +5,7 @@ import json
 import os
 import numpy as np
 import matplotlib.pyplot as plt
-from perceptronProfe import PerceptronProfe
+from PerceptronProfe import PerceptronProfe
 
 ventanaL = tk.Tk()
 ventanaL.title("PERCEPTRON LIMON")
