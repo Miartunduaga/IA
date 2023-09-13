@@ -51,7 +51,7 @@ def mostrarBotones():
 variable = tk.IntVar()
 variableEstado =tk.IntVar()
 
-maduro = tk.Button(ventanaP, text="FRUTA MADURA", width=20, height=5,command=lambda: variableEstado.set(0))
+maduro = tk.Button(ventanaP, text="FRUTA MADURA", width=20, height=5,command=lambda: variableEstado.set(0))#valor 0 o sea que es maduro 
 inmaduro = tk.Button(ventanaP, text="FRUTA NO MADURA", width=20, height=5,command=lambda :variableEstado.set(1))
 
 guardarEstado=tk.Button(ventanaP,text="GUARDAR ESTADO",width=10,height=5,command=caso)

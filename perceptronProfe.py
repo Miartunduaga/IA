@@ -19,17 +19,21 @@ class PerceptronProfe:
         
         respuesta = self.peso1 * entradaPeso1 + self.peso2 * entradaPeso2 + self.peso3 * entradaPeso3 + self.bias
         
-      
+        print(f"FUNCION DE PROPAGACION ENTRADAS  =  {entradaPeso1},      {entradaPeso2},     {entradaPeso3} ")
         
-        respuesta[respuesta >= 0] = 1
-        respuesta[respuesta < 0] = 0
-        print(respuesta,"ARADA SD AS DASD\n")  
+       # respuesta[respuesta >= 0] = 1#respuesta es un arreglo
+       # respuesta[respuesta < 0] = 0
+        
+        if respuesta>=0:
+            respuesta=1
+        elif respuesta<0:
+            respuesta=0  
         return respuesta
     
     def entrenador(self, entradaPesoR,entradaPesoG,entradaPesoB,respuestaDeseada):
         
         global bias,respuestaActual
-        numeroDeEpocas =10
+        numeroDeEpocas =100
         errores =0
         for epoca in range(numeroDeEpocas):
             

@@ -74,8 +74,13 @@ def capturarArea(event):
     verde.append(promedioG)
     azul.append(azul)
     '''
-    return promedioR,promedioG,promedioB
-    
+    print(f" LOS DATOS QUE SUELTA LA FUNCION CAPTURAR AREA {promedioR},    {promedioG},   {promedioB}")
+    print(f" LOS DATOS QUE SUELTA LA FUNCION CAPTURAR AREA {r},    {g},   {b}")
+    return r,g,b
+
+
+
+
 # Inicializa la camara o la fuente de video
 cap = c.VideoCapture('http://192.168.18.9:4747/video')
 
@@ -112,17 +117,19 @@ datosB.append(lista_B)
 
 perceptronLimon=PerceptronProfe(3)
 
-#perceptronLimon.entrenador(lista_R,lista_G,lista_B,etiqueta)
+perceptronLimon.entrenador(lista_R,lista_G,lista_B,etiqueta)
 
-perceptronLimon.entrenador(datosR,datosG,datosB,datosEtiqueta)
+#perceptronLimon.entrenador(datosR,datosG,datosB,datosEtiqueta)
 def activarExamenPerceptron(event):
-    perceptronLimon.peso1(0.5)
-    perceptronLimon.peso2(0.5)
-    perceptronLimon.peso3(0.5)
+   
     salidaPerceptron =perceptronLimon.propagacion(*capturarArea(event))
     
-   # salidaPerceptron =perceptronLimon.propagacion(15,15,15)
-    print(salidaPerceptron)
+    print(*capturarArea(event), " A VER QUE PUTAS MUESTRA LA FUNCION SALIDA PERCEPTRON")
+    #salidaPerceptron =perceptronLimon.propagacion(255,255,255)
+    if salidaPerceptron==0:
+        print("madura")
+    elif salidaPerceptron==1:
+        print("INMADURA")
 
 
 ventanaE.bind("<Return>",activarExamenPerceptron)
