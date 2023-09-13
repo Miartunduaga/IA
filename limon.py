@@ -3,10 +3,9 @@ from PIL import Image, ImageTk
 import practica as p
 import json
 import os
-from perceptron import perceptron
 import numpy as np
 import matplotlib.pyplot as plt
-from perceptronProfe import PerceptronProfe
+from PerceptronProfe import PerceptronProfe
 
 ventanaL = tk.Tk()
 ventanaL.title("PERCEPTRON LIMON")
@@ -193,7 +192,7 @@ exactitud /= total_ejemplos
 
 print("Exactitud en el conjunto de prueba:", exactitud)
 
-'''
+
 
 #PERCEPTRON COLORES RGB 
 perceptron_Limon =perceptron(3)

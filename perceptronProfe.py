@@ -19,11 +19,11 @@ class PerceptronProfe:
         
         respuesta = self.peso1 * entradaPeso1 + self.peso2 * entradaPeso2 + self.peso3 * entradaPeso3 + self.bias
         
-        print(respuesta)
+      
         
         respuesta[respuesta >= 0] = 1
         respuesta[respuesta < 0] = 0
-        
+        print(respuesta,"ARADA SD AS DASD\n")  
         return respuesta
     
     def entrenador(self, entradaPesoR,entradaPesoG,entradaPesoB,respuestaDeseada):
@@ -48,8 +48,5 @@ class PerceptronProfe:
                 
                 if not np.array_equal(respuestaActual,respuestaDeseada):
                     errores+=1
-                print(errores," FALLOS " ,"   bias  " ,self.bias)
+                #print(errores," FALLOS " ,"   bias  " ,self.bias)
             
-    
-    
-  
