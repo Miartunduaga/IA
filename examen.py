@@ -23,8 +23,7 @@ def handle_mouse(event, x, y, flags, param):
 # Inicializa la camara o la fuente de video
 cap = cv2.VideoCapture('http://192.168.18.9:4747/video')
 
-
-# Crea una ventana para mostrar el video
+maicolpndj# Crea una ventana para mostrar el video
 cv2.namedWindow("Video")
 cv2.setMouseCallback("Video", handle_mouse)  # Establece la funcion de manejo del mouse
 
