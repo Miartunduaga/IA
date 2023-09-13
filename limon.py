@@ -103,7 +103,7 @@ def entrada_estado_fruta(entradaClase):
       rutaImagen="Frutas/Manzana/manzanaInmadura.jpeg"
     cargarImagen(rutaImagen)
     
-print("QUE MUESTRA PRIMERO    ",variableL)
+print("VIDA HPTA QUE MUESTRA PRIMERO    ",variableL)
 def cargarImagen(rutaImagen):
     global imagen
     global imagen_tk
