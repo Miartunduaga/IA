@@ -75,14 +75,13 @@ def capturarArea(event):
     azul.append(azul)
     '''
     print(f" LOS DATOS QUE SUELTA LA FUNCION CAPTURAR AREA {promedioR},    {promedioG},   {promedioB}")
-    print(f" LOS DATOS QUE SUELTA LA FUNCION CAPTURAR AREA {r},    {g},   {b}")
-    return r,g,b
+    return promedioR,promedioG,promedioB
 
 
 
 
 # Inicializa la camara o la fuente de video
-cap = c.VideoCapture('http://192.168.18.9:4747/video')
+cap = c.VideoCapture('http://192.168.199.235:4747/video')
 
 etiquetaVideo= tk.Label(ventanaE)#papi se supone que ya saben como es un label
 
@@ -120,6 +119,7 @@ perceptronLimon=PerceptronProfe(3)
 perceptronLimon.entrenador(lista_R,lista_G,lista_B,etiqueta)
 
 #perceptronLimon.entrenador(datosR,datosG,datosB,datosEtiqueta)
+
 def activarExamenPerceptron(event):
    
     salidaPerceptron =perceptronLimon.propagacion(*capturarArea(event))
@@ -137,4 +137,5 @@ entrada = tk.Entry(ventanaE)
 entrada.pack()
 
 ventanaE.mainloop()
+
 

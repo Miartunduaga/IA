@@ -91,6 +91,9 @@ def capturar_area(event):
     with open("datosLimon.json", "w") as archivo_json:
         json.dump(datos_json, archivo_json, indent=4)
         print("Datos guardados en datosLimon.json")
+ 
+ 
+ 
         
 def entrada_estado_fruta(entradaClase):
     global variableL

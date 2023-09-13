@@ -46,7 +46,7 @@ for epoca in range (0,100):
         perceptron_and.propagacion(ejemplos[i,0:3])
         perceptron_and.actualizacionCoeficiente(0.5,ejemplos[i,3])
         # para recorrer la tabla 
-        grad_pesos = np.concatenate((grad_pesos,[perceptron_and.pesos]),axis =0)
+        garad_pesos = np.concatente((grad_pesos,[perceptron_and.pesos]),axis =0)
 
 plt.plot(grad_pesos[:,0],'k')
 plt.plot(grad_pesos[:,1],'r')
