@@ -7,6 +7,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from PerceptronProfe import PerceptronProfe
 
+
+
+
+
 ventanaL = tk.Tk()
 ventanaL.title("PERCEPTRON LIMON")
 ventanaL.geometry("600x600")
@@ -91,8 +95,6 @@ def capturar_area(event):
     with open("datosLimon.json", "w") as archivo_json:
         json.dump(datos_json, archivo_json, indent=4)
         print("Datos guardados en datosLimon.json")
- 
- 
  
         
 def entrada_estado_fruta(entradaClase):

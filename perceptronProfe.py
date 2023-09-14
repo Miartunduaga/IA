@@ -45,16 +45,16 @@ class PerceptronProfe:
                 error = respuestaDeseada[i]- respuestaActual
                 #Actualizacion de bias
 
+                self.bias -= self.tasaAprendizaje*error
                 
+                #Actualizacion de pesos r g b
+                self.peso1 = self.peso1 + (self.tasaAprendizaje * error * entradaPesoR[i])#R
+                self.peso2 = self.peso2 + (self.tasaAprendizaje * error * entradaPesoG[i])#G
+                self.peso3 = self.peso3 + (self.tasaAprendizaje * error * entradaPesoB[i])#B
                 
                 if not np.array_equal(respuestaActual,respuestaDeseada[i]):
                     print(f"Respuesta del pc   {respuestaActual} es diferente de  respuestaActual {respuestaDeseada[i]}")
-                    self.bias -= self.tasaAprendizaje*error
-                
-                    #Actualizacion de pesos r g b
-                    self.peso1 = self.peso1 + (self.tasaAprendizaje * error * entradaPesoR[i])#R
-                    self.peso2 = self.peso2 + (self.tasaAprendizaje * error * entradaPesoG[i])#G
-                    self.peso3 = self.peso3 + (self.tasaAprendizaje * error * entradaPesoB[i])#B
+                  
                     errores+=1
                 else:
                     print("NO HUBO CAMBIO")

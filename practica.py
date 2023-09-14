@@ -1,6 +1,6 @@
 #PAG PRACTICA
 import tkinter as tk
-import limon as l
+import limonEntrada as l
 import uva as u
 import papa as p
 
@@ -34,7 +34,7 @@ def caso():
     elif variable.get() == 2:
         ventanaP.withdraw()
         l.llamarLimon()
-        l.entrada_estado_fruta(variableEstado.get())
+        l.entradaMaduraOInmadura(variableEstado.get())
         
 def mostrarBotones():
    papa.place(x=230, y=100)
