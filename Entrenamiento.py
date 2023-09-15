@@ -5,7 +5,8 @@ import numpy as np
 import json
 import os
 import practica as p
-
+from PerceptronProfe import PerceptronProfe
+import time as t
 ventanaLimonEntrada = tk.Tk()
 ventanaLimonEntrada.title("PERCEPTRON LIMON")
 ventanaLimonEntrada.geometry("600x600")
@@ -13,7 +14,6 @@ ventanaLimonEntrada.withdraw()
 
 ventanaMostrar =None
 variableL=[]
-
 
 def llamarLimon():
     ventanaLimonEntrada.deiconify()
@@ -73,18 +73,17 @@ def capturarArea(event):
     
    # print(f"promedio R : {promedioR}  ,   promedio G :   {promedioG}   ,   promedio B   {promedioB}")
     print(f" LOS DATOS QUE SUELTA LA FUNCION CAPTURAR AREA {promedioR},    {promedioG},   {promedioB}")
-
-    datosParaEntrenar(promedioR,promedioG,promedioB)
+    if variableL[2]==0:
+        datosParaEntrenar(promedioR,promedioG,promedioB)
+    elif variableL[2]==1:
+        clasificar(promedioR,promedioG,promedioB)
+        print("HOLIWI ESTAS CLASIFICANDO")
 
 # Función para retroceder al inicio
-def retroceder_al_inicio(event):
+def retroceder(event):
     ventanaLimonEntrada.withdraw()  # Ocultar la ventana de práctica
     p.mostrarBotones()
     p.ventanaP.deiconify()  # Mostrar la ventana de inicio
-    
-# Vincular la función de retroceso al evento de teclado "Escape"
-ventanaLimonEntrada.bind("<Escape>", retroceder_al_inicio)
-
 
 def datosParaEntrenar(r,g,b):
     datos_json=[]
@@ -171,7 +170,7 @@ def datosParaEntrenar(r,g,b):
 def entradaMaduraOInmadura(entradaEstado):
     global variableL
     variableL=entradaEstado
-    print(variableL)
+    print(variableL[2])
 
 
 # Inicializa la camara o la fuente de video
@@ -184,4 +183,47 @@ etiquetaVideo.pack()#el pack hace que automaticamente la etiqueta se posicione p
 
 actualizarVideo()
 etiquetaVideo.bind("<Button-1>",capturarArea)
+
+def clasificar(r,g,b):
+    global variableL
+    with open(f'{nombreArchivoJson[variableL[1]]}','r') as archivo_json:
+        datosCargados=json.load(archivo_json)
+    lista_R=np.array([datos['R']for datos in datosCargados])
+    lista_G=np.array([datos['G']for datos in datosCargados])
+    lista_B=np.array([datos['B']for datos in datosCargados])
+    etiqueta=np.array([datos['Clase']for datos in datosCargados])
+    
+    if(variableL[1]==2):
+        perceptronLimon= PerceptronProfe(3)
+        perceptronLimon.entrenador(lista_R,lista_G,lista_B,etiqueta)
+        print("PERCEPTRON LIMON CLASIFICANDO")
+        t.sleep(3)
+        salidaPerceptron=perceptronLimon.propagacion(r,g,b)
+        comprobarSiFunciona(salidaPerceptron)
+    elif(variableL[1]==0):
+        perceptronPapa = PerceptronProfe(3)
+        perceptronPapa.entrenador(lista_R,lista_G,lista_B,etiqueta)
+        print("PERCEPTRON PAPA CLASIFICANDO")
+        t.sleep(3)
+        salidaPerceptron=perceptronPapa.propagacion(r,g,b)
+        comprobarSiFunciona(salidaPerceptron)
+    elif(variableL[1]==1):
+        
+        perceptronUva = PerceptronProfe(3)
+        perceptronUva.entrenador(lista_R,lista_G,lista_B,etiqueta)
+        print("PERCEPTRON UVA CLASIFICANDO")
+        t.sleep(1)
+        salidaPerceptron=perceptronUva.propagacion(r,g,b)
+        comprobarSiFunciona(salidaPerceptron)
+        perceptronUva.mostrarGraficoPesos()
+
+def comprobarSiFunciona(salida):
+    if salida==0:
+        print("LA FRUTA ES MADURA")
+    else:
+        print("LA FRUTA ES INMADURA")
+        
+nombreArchivoJson= ['datosPapa.json','datosUva.json','datosLimon.json']
+
+
 #ventanaLimonEntrada.mainloop()

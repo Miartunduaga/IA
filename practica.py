@@ -8,16 +8,20 @@ ventanaP.title("PRACTICA")
 ventanaP.withdraw()
 ventanaP.geometry("600x600")
 
+entradaIndex=None
 
 def ocultarBotones():
     papa.place_forget()
     uva.place_forget()
     limon.place_forget()
     guardar.place_forget()
-    
-    maduro.place(x=230, y=100)
-    inmaduro.place(x=230, y=300)
-    guardarEstado.place(x=500,y=500)
+
+    if(entradaIndex==0):
+        maduro.place(x=230, y=100)
+        inmaduro.place(x=230, y=300)
+        guardarEstado.place(x=500,y=500)
+    elif(entradaIndex==1):
+        caso()
 
 def caso():
         ventanaP.withdraw()
@@ -52,8 +56,13 @@ limon = tk.Button(ventanaP, text="LIMON", width=20, height=5,command=lambda : va
 guardar = tk.Button(ventanaP,text="GUARDAR FRUTA",width=10,height=3,command=ocultarBotones)
 
 def estadoYfruta():
-    arreglo=[variableEstado.get(),variable.get()]
+    #variableEstado=MaduroInmaduro,varibale=PapaUvaLimon entradaIndex=EntrenarClasificar
+    arreglo=[variableEstado.get(),variable.get(),entradaIndex]
     return arreglo
+
+def sacarClase(entradaI):
+    global entradaIndex
+    entradaIndex=entradaI
 
 guardar.place(x=500,y=500)
 papa.place(x=230, y=100)

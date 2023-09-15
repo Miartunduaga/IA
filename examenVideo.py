@@ -114,6 +114,8 @@ datosG.append(lista_G)
 datosB.append(lista_B)
 
 
+
+          
 perceptronLimon=PerceptronProfe(3)
 
 perceptronLimon.entrenador(lista_R,lista_G,lista_B,etiqueta)
