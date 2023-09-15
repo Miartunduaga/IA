@@ -7,7 +7,6 @@ ventana = tk.Tk()
 ventana.geometry("600x600")
 ventana.title("TEXTO PRUEBA")
 
-
 def abrir_Practica():
     #Ocultar Pagina
     ventana.withdraw()

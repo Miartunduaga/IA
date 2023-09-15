@@ -1,8 +1,6 @@
 #PAG PRACTICA
 import tkinter as tk
-import limonEntrada as l
-import uva as u
-import papa as p
+import Entrenamiento as e
 
 
 ventanaP = tk.Tk()
@@ -22,19 +20,9 @@ def ocultarBotones():
     guardarEstado.place(x=500,y=500)
 
 def caso():
-   
-    if variable.get()== 0:
-        ventanaP.withdraw()#Ocultar Pagina
-        p.ventanap.deiconify()
-        p.entrada_estado_fruta(variableEstado.get())
-    elif variable.get()== 1:
         ventanaP.withdraw()
-        u.ventanaU.deiconify()#mostrar pagina de Uva
-        u.entrada_estado_fruta(variableEstado.get())
-    elif variable.get() == 2:
-        ventanaP.withdraw()
-        l.llamarLimon()
-        l.entradaMaduraOInmadura(variableEstado.get())
+        e.llamarLimon()
+        e.entradaMaduraOInmadura(estadoYfruta())
         
 def mostrarBotones():
    papa.place(x=230, y=100)
@@ -62,6 +50,10 @@ uva = tk.Button(ventanaP, text="UVA", width=20, height=5,command=lambda : variab
 limon = tk.Button(ventanaP, text="LIMON", width=20, height=5,command=lambda : variable.set(2))
 
 guardar = tk.Button(ventanaP,text="GUARDAR FRUTA",width=10,height=3,command=ocultarBotones)
+
+def estadoYfruta():
+    arreglo=[variableEstado.get(),variable.get()]
+    return arreglo
 
 guardar.place(x=500,y=500)
 papa.place(x=230, y=100)
