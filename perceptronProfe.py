@@ -32,30 +32,29 @@ class PerceptronProfe:
         print(respuesta)  
         return respuesta
 
-   
+    
     def entrenador(self, entradaPesoR,entradaPesoG,entradaPesoB,respuestaDeseada):
 
         global bias,respuestaActual
-        numeroDeEpocas =1000
         errores =0
+        numeroDeEpocas=10
         for epoca in range(numeroDeEpocas):
             
             for i in range(len(respuestaDeseada)):
                 respuestaActual = self.propagacion(entradaPesoR[i],entradaPesoG[i],entradaPesoB[i])
-               
+                error = respuestaDeseada[i]- respuestaActual
+                #Actualizacion de bias                    
+                self.bias -= self.tasaAprendizaje*error
+                #Actualizacion de pesos r g b
+                self.peso1 = self.peso1 + (self.tasaAprendizaje * error * entradaPesoR[i])#R
+                self.peso2 = self.peso2 + (self.tasaAprendizaje * error * entradaPesoG[i])#G
+                self.peso3 = self.peso3 + (self.tasaAprendizaje * error * entradaPesoB[i])#B      
+                   
+                self.historialPeso1.append(self.peso1)
+                self.historialPeso2.append(self.peso2)
+                self.historialPeso3.append(self.peso3)  
                 if not np.array_equal(respuestaActual,respuestaDeseada[i]):
                     print(f"Respuesta del pc   {respuestaActual} es diferente de  respuestaActual {respuestaDeseada[i]}")
-                    error = respuestaDeseada[i]- respuestaActual
-                    #Actualizacion de bias                    
-                    self.bias -= self.tasaAprendizaje*error
-                    #Actualizacion de pesos r g b
-                    self.peso1 = self.peso1 + (self.tasaAprendizaje * error * entradaPesoR[i])#R
-                    self.peso2 = self.peso2 + (self.tasaAprendizaje * error * entradaPesoG[i])#G
-                    self.peso3 = self.peso3 + (self.tasaAprendizaje * error * entradaPesoB[i])#B      
-                   
-                    self.historialPeso1.append(self.peso1)
-                    self.historialPeso2.append(self.peso2)
-                    self.historialPeso3.append(self.peso3)
                     
                     errores+=1 
                 else:
@@ -66,9 +65,9 @@ class PerceptronProfe:
         plt.plot(self.historialPeso1, label="Peso 1")
         plt.plot(self.historialPeso2, label="Peso 2")
         plt.plot(self.historialPeso3, label="Peso 3")
-        plt.xlabel("Época")
-        plt.ylabel("Valor del Peso")
-        plt.title("Evolución de los Pesos durante el Entrenamiento")
+        plt.xlabel("Epoca")
+        plt.ylabel("Valor del peso")
+        plt.title("Evolución de los pesos durante el Entrenamiento")
         plt.legend()
         plt.show()
                 

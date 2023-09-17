@@ -200,6 +200,7 @@ def clasificar(r,g,b):
         t.sleep(3)
         salidaPerceptron=perceptronLimon.propagacion(r,g,b)
         comprobarSiFunciona(salidaPerceptron)
+        perceptronLimon.mostrarGraficoPesos()
     elif(variableL[1]==0):
         perceptronPapa = PerceptronProfe(3)
         perceptronPapa.entrenador(lista_R,lista_G,lista_B,etiqueta)
@@ -207,6 +208,7 @@ def clasificar(r,g,b):
         t.sleep(3)
         salidaPerceptron=perceptronPapa.propagacion(r,g,b)
         comprobarSiFunciona(salidaPerceptron)
+        perceptronPapa.mostrarGraficoPesos()
     elif(variableL[1]==1):
         
         perceptronUva = PerceptronProfe(3)
