@@ -20,28 +20,26 @@ class PerceptronProfe:
     def propagacion(self,entradaPeso1,entradaPeso2,entradaPeso3):
         
         respuesta = self.peso1 * entradaPeso1 + self.peso2 * entradaPeso2 + self.peso3 * entradaPeso3 + self.bias
-        
-        '''
-        respuesta[respuesta >= 0] = 1
-        respuesta[respuesta < 0] = 0
-        '''
+
         if respuesta>=0:
             respuesta=1
+            
         elif(respuesta<0):
             respuesta=0      
         print(respuesta)  
+        
         return respuesta
 
     
     def entrenador(self, entradaPesoR,entradaPesoG,entradaPesoB,respuestaDeseada):
 
-        global bias,respuestaActual
         errores =0
         numeroDeEpocas=10
         for epoca in range(numeroDeEpocas):
             
             for i in range(len(respuestaDeseada)):
                 respuestaActual = self.propagacion(entradaPesoR[i],entradaPesoG[i],entradaPesoB[i])
+                
                 error = respuestaDeseada[i]- respuestaActual
                 #Actualizacion de bias                    
                 self.bias -= self.tasaAprendizaje*error

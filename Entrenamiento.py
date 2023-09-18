@@ -1,3 +1,4 @@
+#PAG ENTRENAMIENTO
 import tkinter as tk
 import cv2 as c
 from PIL import Image, ImageTk
@@ -7,10 +8,14 @@ import os
 import practica as p
 from PerceptronProfe import PerceptronProfe
 import time as t
+import sys
+
+
 ventanaLimonEntrada = tk.Tk()
-ventanaLimonEntrada.title("PERCEPTRON LIMON")
+
 ventanaLimonEntrada.geometry("600x600")
 ventanaLimonEntrada.withdraw()
+
 
 ventanaMostrar =None
 variableL=[]
@@ -62,22 +67,24 @@ def capturarArea(event):
             suma_g+=g
             suma_b+=b
             
-           # print(f"R: {r}, G: {g}, B: {b}")
+
     totalPixeles= 49
     
-   # print(f"total de pixeles    {totalPixeles},         suma R : {suma_r}     ,  suma g : {suma_g},        suma b : {suma_b}")
-    
+   
     promedioR =suma_r//totalPixeles    
     promedioG =suma_g//totalPixeles    
     promedioB =suma_b//totalPixeles    
+    print(f"EL PROMEDIO QUE DA DE LOS COLORES ES :    R:   {promedioR}   G: {promedioG}  B: {promedioB}")
     
-   # print(f"promedio R : {promedioR}  ,   promedio G :   {promedioG}   ,   promedio B   {promedioB}")
-    print(f" LOS DATOS QUE SUELTA LA FUNCION CAPTURAR AREA {promedioR},    {promedioG},   {promedioB}")
     if variableL[2]==0:
+        "ESTAS EN MODO ENTRENAMIENTO"
         datosParaEntrenar(promedioR,promedioG,promedioB)
     elif variableL[2]==1:
+        
+        print("ESTAS CLASIFICANDO")
+        
         clasificar(promedioR,promedioG,promedioB)
-        print("HOLIWI ESTAS CLASIFICANDO")
+        
 
 # Función para retroceder al inicio
 def retroceder(event):
@@ -90,7 +97,7 @@ def datosParaEntrenar(r,g,b):
     if(variableL[1]==2):
         if os.path.exists("datosLimon.json"):
        #ABRIR UN JSON
-            with open("datosLimon.json"  ,"r") as archivo_json:
+            with open("datosLimon.json","r") as archivo_json:
                 datos_json=json.load(archivo_json)
             
                 ultimo_dato = datos_json[-1]
@@ -165,7 +172,32 @@ def datosParaEntrenar(r,g,b):
         with open("datosUva.json",'w') as archivo_json:
             json.dump(datos_json,archivo_json,indent=4)
             print("SE GUARDARON LOS DATOS DE UVA")
-        
+    elif (variableL[1]==3):
+        if os.path.exists("datosFrutaProfe.json"):
+       #ABRIR UN JSON
+            with open("datosFrutaProfe.json","r") as archivo_json:
+                datos_json=json.load(archivo_json)
+            
+                ultimo_dato = datos_json[-1]
+                iteracion = ultimo_dato["Indice"] 
+                datos_json.append({
+                    "Indice":iteracion+1,
+                    "R":r,
+                    "G":g,
+                    "B":b,
+                    "Clase":variableL[0]
+            })             
+        else:
+            datos_json.append({
+                "Indice": 1,
+                "R":r,
+                "G":g,
+                "B":b,
+                "Clase":variableL[0]
+        })
+        with open("datosFrutaProfe.json",'w') as archivo_json:
+            json.dump(datos_json,archivo_json,indent=4)
+            print("SE GUARDARON LOS DATOS DE LA NUEVA FRUTA")
     
 def entradaMaduraOInmadura(entradaEstado):
     global variableL
@@ -183,6 +215,9 @@ etiquetaVideo.pack()#el pack hace que automaticamente la etiqueta se posicione p
 
 actualizarVideo()
 etiquetaVideo.bind("<Button-1>",capturarArea)
+
+ventanaLimonEntrada.bind("<Escape>",retroceder)
+
 
 def clasificar(r,g,b):
     global variableL
@@ -210,14 +245,21 @@ def clasificar(r,g,b):
         comprobarSiFunciona(salidaPerceptron)
         perceptronPapa.mostrarGraficoPesos()
     elif(variableL[1]==1):
-        
         perceptronUva = PerceptronProfe(3)
         perceptronUva.entrenador(lista_R,lista_G,lista_B,etiqueta)
         print("PERCEPTRON UVA CLASIFICANDO")
-        t.sleep(1)
+        t.sleep(3)
         salidaPerceptron=perceptronUva.propagacion(r,g,b)
         comprobarSiFunciona(salidaPerceptron)
         perceptronUva.mostrarGraficoPesos()
+    elif(variableL[1]==3):
+        perceptronFruta = PerceptronProfe(3)
+        perceptronFruta.entrenador(lista_R,lista_G,lista_B,etiqueta)
+        print("PERCEPTRON FRUTA DEL MAESTRO CLASIFICANDO")
+        t.sleep(3)
+        salidaPerceptron=perceptronFruta.propagacion(r,g,b)
+        comprobarSiFunciona(salidaPerceptron)
+        perceptronFruta.mostrarGraficoPesos()
 
 def comprobarSiFunciona(salida):
     if salida==0:
@@ -225,7 +267,12 @@ def comprobarSiFunciona(salida):
     else:
         print("LA FRUTA ES INMADURA")
         
-nombreArchivoJson= ['datosPapa.json','datosUva.json','datosLimon.json']
+nombreArchivoJson= ['datosPapa.json','datosUva.json','datosLimon.json','datosFrutaProfe.json']
 
+nombreTitulo=['papa','uva','limon','frutaProfe']
 
+def mostrarTitulo(variable):
+    x =variable
+    ventanaLimonEntrada.title("perceptron " + nombreTitulo[x])
+    
 #ventanaLimonEntrada.mainloop()
