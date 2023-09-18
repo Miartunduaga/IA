@@ -230,6 +230,7 @@ def clasificar(r,g,b):
     
     if(variableL[1]==2):
         perceptronLimon= PerceptronProfe(3)
+        perceptronLimon.limpiarHistorial()
         perceptronLimon.entrenador(lista_R,lista_G,lista_B,etiqueta)
         print("PERCEPTRON LIMON CLASIFICANDO")
         t.sleep(3)
@@ -238,6 +239,7 @@ def clasificar(r,g,b):
         perceptronLimon.mostrarGraficoPesos()
     elif(variableL[1]==0):
         perceptronPapa = PerceptronProfe(3)
+        perceptronPapa.limpiarHistorial()
         perceptronPapa.entrenador(lista_R,lista_G,lista_B,etiqueta)
         print("PERCEPTRON PAPA CLASIFICANDO")
         t.sleep(3)
@@ -246,6 +248,7 @@ def clasificar(r,g,b):
         perceptronPapa.mostrarGraficoPesos()
     elif(variableL[1]==1):
         perceptronUva = PerceptronProfe(3)
+        perceptronUva.limpiarHistorial()
         perceptronUva.entrenador(lista_R,lista_G,lista_B,etiqueta)
         print("PERCEPTRON UVA CLASIFICANDO")
         t.sleep(3)
@@ -254,6 +257,7 @@ def clasificar(r,g,b):
         perceptronUva.mostrarGraficoPesos()
     elif(variableL[1]==3):
         perceptronFruta = PerceptronProfe(3)
+        perceptronFruta.limpiarHistorial()
         perceptronFruta.entrenador(lista_R,lista_G,lista_B,etiqueta)
         print("PERCEPTRON FRUTA DEL MAESTRO CLASIFICANDO")
         t.sleep(3)

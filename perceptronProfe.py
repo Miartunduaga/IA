@@ -29,7 +29,10 @@ class PerceptronProfe:
         print(respuesta)  
         
         return respuesta
-
+    def limpiarHistorial(self):
+        self.historialPeso1=[self.peso1]
+        self.historialPeso2=[self.peso2]
+        self.historialPeso3=[self.peso3]
     
     def entrenador(self, entradaPesoR,entradaPesoG,entradaPesoB,respuestaDeseada):
 
@@ -58,6 +61,9 @@ class PerceptronProfe:
                 else:
                     print("NO HUBO CAMBIO")
                 print("     FALLOS    " ,errores,"   bias  " ,self.bias)
+
+
+
 
     def mostrarGraficoPesos(self):
         plt.plot(self.historialPeso1, label="Peso 1")
