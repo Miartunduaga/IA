@@ -37,10 +37,11 @@ class PerceptronProfe:
     def entrenador(self, entradaPesoR,entradaPesoG,entradaPesoB,respuestaDeseada):
 
         errores =0
-        numeroDeEpocas=10
+        numeroDeEpocas=100
         for epoca in range(numeroDeEpocas):
             
             for i in range(len(respuestaDeseada)):
+                print(f"PRIMEROS PESOS {self.peso1}   {self.peso2}    {self.peso3}")
                 respuestaActual = self.propagacion(entradaPesoR[i],entradaPesoG[i],entradaPesoB[i])
                 
                 error = respuestaDeseada[i]- respuestaActual
@@ -54,13 +55,14 @@ class PerceptronProfe:
                 self.historialPeso1.append(self.peso1)
                 self.historialPeso2.append(self.peso2)
                 self.historialPeso3.append(self.peso3)  
+                print(f" PESO   1 {self.peso1}     PESO 2  {self.peso2}   PESO 3 {self.peso3}")
                 if not np.array_equal(respuestaActual,respuestaDeseada[i]):
                     print(f"Respuesta del pc   {respuestaActual} es diferente de  respuestaActual {respuestaDeseada[i]}")
                     
                     errores+=1 
-                else:
-                    print("NO HUBO CAMBIO")
-                print("     FALLOS    " ,errores,"   bias  " ,self.bias)
+                #else:
+                   # print("NO HUBO CAMBIO")
+                #print("     FALLOS    " ,errores,"   bias  " ,self.bias)
 
 
 
