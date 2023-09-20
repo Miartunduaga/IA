@@ -10,6 +10,12 @@ from perceptronProfe import PerceptronProfe
 import time as t
 import sys
 import pandas as pd
+import serial
+from time import sleep
+
+ser = serial.Serial('COM4', 9600)
+sleep(5)
+
 
 ventanaLimonEntrada = tk.Tk()
 
@@ -206,7 +212,7 @@ def entradaMaduraOInmadura(entradaEstado):
 
 
 # Inicializa la camara o la fuente de video
-cap = c.VideoCapture('http://192.168.100.20:4747/video')
+cap = c.VideoCapture('http://192.168.1.3:4747/video')
 
 
 etiquetaVideo= tk.Label(ventanaLimonEntrada)#papi se supone que ya saben como es un label
@@ -278,6 +284,8 @@ def clasificar(r,g,b):
 def comprobarSiFunciona(salida):
     if salida==0:
         print("LA FRUTA ES MADURA")
+        entrada = 1
+        ser.write(str(entrada).encode())
     else:
         print("LA FRUTA ES INMADURA")
         
