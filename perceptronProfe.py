@@ -58,7 +58,6 @@ class PerceptronProfe:
                 print(f" Actualizando peso  R {self.peso1}     actualizando peso G  {self.peso2}   actualizando peso B {self.peso3}   actualizando bias   {self.bias}")
                 if not np.array_equal(respuestaActual,respuestaDeseada[i]):
                     print(f"Respuesta del pc   {respuestaActual} es diferente de  respuestaActual {respuestaDeseada[i]}")
-                    
                     errores+=1
         print("     FALLOS    " ,errores)    
         print(f" PESO  FINAL  R {self.peso1}     PESO FINAL G  {self.peso2}   PESO FINAL B {self.peso3}   FINAL BIAS   {self.bias}")
