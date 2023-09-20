@@ -212,7 +212,7 @@ def entradaMaduraOInmadura(entradaEstado):
 
 
 # Inicializa la camara o la fuente de video
-cap = c.VideoCapture('http://192.168.1.3:4747/video')
+cap = c.VideoCapture('http://192.168.100.20:4747/video')
 
 
 etiquetaVideo= tk.Label(ventanaLimonEntrada)#papi se supone que ya saben como es un label
@@ -242,7 +242,7 @@ def clasificar(r,g,b):
     }
     
     df = pd.DataFrame(nuevo_data)
-    df.to_excel('archivo.xlsx', index=False, engine='openpyxl')
+    #df.to_excel('archivo.xlsx', index=False, engine='openpyxl')
     
     if(variableL[1]==2):
         perceptronLimon= PerceptronProfe(3)
@@ -253,6 +253,7 @@ def clasificar(r,g,b):
         salidaPerceptron=perceptronLimon.propagacion(r,g,b)
         comprobarSiFunciona(salidaPerceptron)
         perceptronLimon.mostrarGraficoPesos()
+        df.to_excel('archivo_Limon.xlsx', index=False, engine='openpyxl')
     elif(variableL[1]==0):
         perceptronPapa = PerceptronProfe(3)
         perceptronPapa.limpiarHistorial()
@@ -262,6 +263,7 @@ def clasificar(r,g,b):
         salidaPerceptron=perceptronPapa.propagacion(r,g,b)
         comprobarSiFunciona(salidaPerceptron)
         perceptronPapa.mostrarGraficoPesos()
+        df.to_excel('archivo_Papa.xlsx', index=False, engine='openpyxl')
     elif(variableL[1]==1):
         perceptronUva = PerceptronProfe(3)
         perceptronUva.limpiarHistorial()
@@ -271,6 +273,8 @@ def clasificar(r,g,b):
         salidaPerceptron=perceptronUva.propagacion(r,g,b)
         comprobarSiFunciona(salidaPerceptron)
         perceptronUva.mostrarGraficoPesos()
+        df.to_excel('archivo_Uva.xlsx', index=False, engine='openpyxl')
+
     elif(variableL[1]==3):
         perceptronFruta = PerceptronProfe(3)
         perceptronFruta.limpiarHistorial()
@@ -280,6 +284,8 @@ def clasificar(r,g,b):
         salidaPerceptron=perceptronFruta.propagacion(r,g,b)
         comprobarSiFunciona(salidaPerceptron)
         perceptronFruta.mostrarGraficoPesos()
+        df.to_excel('archivo_Fruta.xlsx', index=False, engine='openpyxl')
+
 
 def comprobarSiFunciona(salida):
     if salida==0:
