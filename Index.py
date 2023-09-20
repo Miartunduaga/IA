@@ -20,9 +20,7 @@ def abrir_Practica():
     pa.ventanaP.deiconify()
     pa.sacarClase(variableDesicion.get())
     print(variableDesicion.get()," ENTRENAMIENTO   0    ,    CLASIFICACION    1")
-
-
-
+    
 etiqueta = tk.Label(ventana,text="HOLA MUNDO",bg="green")
 etiqueta.pack(fill=tk.X)
 #command=lambda:saludo   permite sincronizar funciones.

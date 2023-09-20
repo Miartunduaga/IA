@@ -206,7 +206,7 @@ def entradaMaduraOInmadura(entradaEstado):
 
 
 # Inicializa la camara o la fuente de video
-cap = c.VideoCapture('http://172.27.3.229:4747/video')
+cap = c.VideoCapture('http://192.168.18.9:4747/video')
 
 
 etiquetaVideo= tk.Label(ventanaLimonEntrada)#papi se supone que ya saben como es un label

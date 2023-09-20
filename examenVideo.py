@@ -3,7 +3,7 @@ import cv2 as c
 from PIL import Image, ImageTk
 import numpy as np
 import json
-from PerceptronProfe import PerceptronProfe
+from perceptronProfe import PerceptronProfe
 
 ventanaE = tk.Tk()
 ventanaE.title("PERCEPTRON LIMON")
