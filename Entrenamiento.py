@@ -9,7 +9,7 @@ import practica as p
 from perceptronProfe import PerceptronProfe
 import time as t
 import sys
-
+import pandas as pd
 
 ventanaLimonEntrada = tk.Tk()
 
@@ -206,7 +206,7 @@ def entradaMaduraOInmadura(entradaEstado):
 
 
 # Inicializa la camara o la fuente de video
-cap = c.VideoCapture('http://192.168.18.9:4747/video')
+cap = c.VideoCapture('http://192.168.100.20:4747/video')
 
 
 etiquetaVideo= tk.Label(ventanaLimonEntrada)#papi se supone que ya saben como es un label
@@ -227,6 +227,16 @@ def clasificar(r,g,b):
     lista_G=np.array([datos['G']for datos in datosCargados])
     lista_B=np.array([datos['B']for datos in datosCargados])
     etiqueta=np.array([datos['Clase']for datos in datosCargados])
+    
+    nuevo_data = {
+        'r' : lista_R,
+        'g' : lista_G,
+        'b' : lista_B,
+        'clase' : etiqueta
+    }
+    
+    df = pd.DataFrame(nuevo_data)
+    df.to_excel('archivo.xlsx', index=False, engine='openpyxl')
     
     if(variableL[1]==2):
         perceptronLimon= PerceptronProfe(3)
