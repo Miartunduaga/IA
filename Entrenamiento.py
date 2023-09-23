@@ -286,7 +286,6 @@ def clasificar(r,g,b):
         perceptronFruta.mostrarGraficoPesos()
         df.to_excel('archivo_Fruta.xlsx', index=False, engine='openpyxl')
 
-
 def comprobarSiFunciona(salida):
     if salida==0:
         print("LA FRUTA ES MADURA")
